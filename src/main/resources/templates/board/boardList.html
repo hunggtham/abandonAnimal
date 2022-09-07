@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>ChariTeam - Free Nonprofit Website Template</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicon, Fonts , Stylesheet -->
+  <div th:replace="fragments/common :: css"></div>
+  <link href="dashboard.css" th:href="@{css/dashboard.css}" rel="stylesheet">
+</head>
+
+
+<body>
+  <!-- Spinner Start -->
+  <div id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+  <!-- Spinner End -->
+
+
+  <!-- Navbar Start -->
+  <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s" th:replace="fragments/common :: navbar">
+  </div>
+  <!-- Navbar End -->
+
+
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center">
+      <h1 class="display-4 text-white animated slideInDown mb-4">DashBoard</h1>
+      <nav aria-label="breadcrumb animated slideInDown">
+        <ol class="breadcrumb justify-content-center mb-0">
+          <li class="breadcrumb-item"><a class="text-white" href="#" th:href="@{/}">Home</a></li>
+          <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+          <li class="breadcrumb-item text-primary active" aria-current="page" href="#" th:href="@{/boardList}">DashBoard
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- Page Header End -->
+  <!-- dashboard -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-3 col-md-6">
+        <div class="card bg-pattern">
+          <div class="card-body">
+            <div class="float-right">
+              <i class="fa fa-archive text-primary h4 ml-3"></i>
+            </div>
+            <h5 class="font-size-20 mt-0 pt-1" th:text="${boards.totalElements}">24</h5>
+            <p class="text-muted mb-0">Total</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card bg-pattern">
+          <div class="card-body">
+            <div class="float-right">
+              <i class="fa fa-th text-primary h4 ml-3"></i>
+            </div>
+            <h5 class="font-size-20 mt-0 pt-1" th:text="${endState}">18</h5>
+            <p class="text-muted mb-0">End</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card bg-pattern">
+          <div class="card-body">
+            <div class="float-right">
+              <i class="fa fa-file text-primary h4 ml-3"></i>
+            </div>
+            <h5 class="font-size-20 mt-0 pt-1" th:text="${pendingState}">06</h5>
+            <p class="text-muted mb-0">Pending</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <form>
+              <div class="form-group mb-0">
+                <label>Search</label>
+                <div class="input-group mb-0">
+                  <input type="text" class="form-control" placeholder="Search..."
+                    aria-describedby="project-search-addon" />
+                  <div class="input-group-append">
+                    <button class="btn btn-danger" type="button" id="project-search-addon"><i
+                        class="fa fa-search search-icon font-12"></i></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive project-list">
+              <table class="table project-table table-centered table-nowrap">
+                <thead>
+                  <tr class="colColor">
+                    <th scope="col">NoticeNo</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Happen Day</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Kind</th>
+                    <th scope="col">Care Address</th>
+                    <th scope="col">Care Tel</th>
+                    <th scope="col">Special Mark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- row1 -->
+                  <!-- th:text="${board.name}" -->
+                  <tr th:each="board : ${boards}">
+                    <td><a th:text="${board.noticeNo}" th:href="@{viewDetail(desertionNo = ${board.desertionNo})}"></a>
+                    </td>
+                    <!-- <img th:attr="src=@{$board.image}" /> -->
+                    <td> <a th:href="${board.image}"><img id="display-img" th:src="${board.image}"></a></td>
+                    <!-- th:text="${#calendars.format(today,'dd MMMM yyyy')}" -->
+                    <!-- <td th:text="${#temporals.createDate(user.crtDtm, 'yyyyMMdd')}"></td> -->
+                    <!-- th:text="${board.happenDay} != null ? ${#temporals.createDate(board.happenDay,'yyyymmdd')} : 'happen Day is null' " -->
+                    <!-- ${#calendars.format(cal, 'dd/MMM/yyyy HH:mm')} -->
+                    <!-- th:text="${#temporals.format(board.happenDay,'yyyy-MM-dd')}" -->
+
+                    <td th:text="${#temporals.createDate(board.happenDay,'yyyyMMdd')}">02/5/2019</td>
+
+                    <!-- class="text-success font-12" -->
+                    <td class="status" th:text="${board.status}"
+                      th:classappend="${board.status} == '보호중' ? 'text-primary font-12' : 'text-success font-12'"> ok
+                    </td>
+                    <td class="kind" th:text="${board.kind}">dog</td>
+
+                    <td class="care_address" th:text="${board.careAddr}">Korea</td>
+
+                    <td class="officetel" th:text="${board.officeTel}">031-000-000</td>
+
+                    <td class="special_mark" th:text="${board.specialMark}">beautiful</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <!-- end project-list -->
+
+            <!-- page navigation  -->
+            <div class="pt-3">
+              <ul class="pagination justify-content-end mb-0">
+                <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
+                  <a class="page-link" href="#" th:href="@{/boardList(page= ${boards.pageable.pageNumber - 1})}"
+                    tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <!-- page start -->
+                <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
+                  <a class="page-link" href="#" th:href="@{/boardList(page= 1)}" tabindex="-1"
+                    aria-disabled="true">First</a>
+                </li>
+                <!-- start page -->
+                <li class="page-item" th:classappend="${i== boards.pageable.pageNumber + 1} ? 'disabled'"
+                  th:each="i : ${#numbers.sequence(startPage,endPage)}">
+                  <a class="page-link" href="#" th:href="@{/boardList(page=${i -1}) }" th:text="${i}">1</a>
+                </li>
+                <!-- page end -->
+                <li class="page-item"
+                  th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled'">
+                  <a class="page-link" href="#" th:href="@{/boardList(page= ${boards.totalPages -1})}">Last</a>
+                </li>
+                <!-- next page -->
+                <li class="page-item"
+                  th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled'">
+                  <a class="page-link" th:href="@{/boardList(page= ${boards.pageable.pageNumber + 1})}">Next</a>
+                </li>
+                <!-- go to page -->
+
+                <div>
+                  <div class="form-group mb-0">
+                    <div class="input-group mb-0">
+                      <input type="text" id="go-to" class="form-control" placeholder="Go to..."
+                        aria-describedby="project-search-addon" />
+                      <div class="input-group-append">
+                        <button type="button" id="project-search-addon"><i
+                            class="bi bi-chevron-double-right"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </ul>
+            </div>
+            <!-- end page navigation -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+
+
+
+
+
+  <!-- end dashboard -->
+  <!-- Footer Start -->
+  <div class="container-xxl py-5" th:replace="fragments/common :: footer">
+  </div>
+  <!-- Footer End -->
+
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+  <!-- JavaScript Libraries -->
+  <div class="javascript" th:replace="fragments/common :: javascript"></div>
+
+</body>
+
+</html>

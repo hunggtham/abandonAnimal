@@ -1,0 +1,85 @@
+body {
+  background: #f3f3f3;
+  margin-top: 20px;
+  color: #616f80;
+}
+
+.card {
+  border: none;
+  margin-bottom: 24px;
+  -webkit-box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
+  box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
+}
+
+.avatar-xs {
+  height: 2.3rem;
+  width: 2.3rem;
+}
+
+/* go to button */
+#project-search-addon {
+  padding: 5px;
+}
+
+/* goto size */
+#go-to {
+  flex: 0.3 0.3 auto;
+}
+
+.justify-content-end {
+  justify-content: center !important;
+}
+
+#display-img {
+  width: 50px;
+  height: 50px;
+}
+
+th {
+  color: orange;
+}
+
+
+/* animal detail css */
+
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #BA68C8
+}
+
+.profile-button {
+  background: orange;
+  box-shadow: none;
+  border: none
+}
+
+.profile-button:hover {
+  background: orange
+}
+
+.profile-button:focus {
+  background: orange;
+  box-shadow: none
+}
+
+.profile-button:active {
+  background: orange;
+  box-shadow: none
+}
+
+.back:hover {
+  color: orange;
+  cursor: pointer
+}
+
+.labels {
+  font-size: 11px
+}
+
+.add-experience:hover {
+  background: orange;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px orange
+}

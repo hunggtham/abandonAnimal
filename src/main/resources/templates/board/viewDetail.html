@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>ChariTeam - Free Nonprofit Website Template</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicon, Fonts , Stylesheet -->
+  <div th:replace="fragments/common :: css"></div>
+  <link href="dashboard.css" th:href="@{css/dashboard.css}" rel="stylesheet">
+  <link href="viewDetail.css" th:href="@{css/viewDetail.css}" rel="stylesheet">
+
+</head>
+
+
+<body>
+  <!-- Spinner Start -->
+  <div id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+  <!-- Spinner End -->
+
+
+  <!-- Navbar Start -->
+  <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s" th:replace="fragments/common :: navbar">
+  </div>
+  <!-- Navbar End -->
+
+
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center">
+      <h1 class="display-4 text-white animated slideInDown mb-4">About Animal</h1>
+      <nav aria-label="breadcrumb animated slideInDown">
+        <ol class="breadcrumb justify-content-center mb-0">
+          <li class="breadcrumb-item"><a class="text-white" th:href="@{/}">Home</a></li>
+          <li class="breadcrumb-item"><a class="text-white" th:href="@{/boardList}">DashBoard</a></li>
+          <li class="breadcrumb-item text-primary active" aria-current="page">About Animal</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- Page Header End -->
+
+  <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+      <div class="col-md-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+          <div class="animal-img">
+            <img width="150px" th:src="${board.image}" />
+          </div>
+          <span class="font-weight-bold" th:text="${board.kind}"></span>
+        </div>
+      </div>
+
+      <div class="mt-5 text-right">
+        <a class="btn btn-primary profile-button" type="button"
+          th:href="@{/editDetail(desertionNo = ${board.desertionNo})}">Edit Detail</a>
+      </div>
+
+
+
+      <table class="center">
+        <caption></caption>
+        <colgroup>
+          <col width="120" />
+          <col width="*" />
+          <col width="120" />
+          <col width="*" />
+        </colgroup>
+        <tr>
+          <!-- colspan="3" -->
+          <th>NoticeNo</th>
+          <td th:text="${board.noticeNo}"></td>
+        </tr>
+        <tr>
+          <th>Color</th>
+          <td th:text="${board.color}">연갈색+흰색</td>
+        </tr>
+        <tr>
+          <th>Gender</th>
+          <td th:text="${gender}">수컷</td>
+          <th scope="row">Neuter(Y/N)</th>
+          <td th:text="${neuterYN}"></td>
+        </tr>
+        <tr>
+          <th>Age</th>
+          <td th:text="${board.age}">2 year</td>
+          <th>Weight</th>
+          <td th:text="${board.weight}">10kg</td>
+        </tr>
+        <tr>
+          <th scope="row">Notice Day</th>
+          <td th:text="${#temporals.createDate(board.noticeSdt,'yyyyMMdd')}">2022-09-06</td>
+          <th scope="row">State End Day</th>
+          <td th:text="${#temporals.createDate(board.noticeEdt,'yyyyMMdd')}">2022-09-06</td>
+        </tr>
+        <tr>
+          <th>Special Mark</th>
+          <td th:text="${board.specialMark}"></td>
+        </tr>
+        <tr>
+          <th>Other Notice</th>
+          <td th:text="${board.otherNote}"></td>
+        </tr>
+        <tr>
+          <th>Competent Organ </th>
+          <td th:text="${board.careNm}">경상</td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td th:text="${board.status}">보호중
+          </td>
+        </tr>
+        <tr>
+          <th>Care Center</th>
+          <td th:text="${board.orgNm}">보호소</td>
+          <th>Care Tel</th>
+          <td><a th:href="${board.officeTel}">012-345-6789</a></td>
+        </tr>
+
+        <tr>
+          <th>Care Address</th>
+          <td th:text="${board.careAddr}">경상남도 </td>
+          <th>Care Room</th>
+          <td th:text="${board.chargeNm}">room</td>
+        </tr>
+      </table>
+
+      <div class="mt-5 text-center">
+        <a class="btn btn-primary profile-button" type="button"
+          th:href="@{/viewDetail(desertionNo = ${board.desertionNo -1})}">Next Animal</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+  <!-- Footer Start -->
+  <div class="container-xxl py-5" th:replace="fragments/common :: footer">
+  </div>
+  <!-- Footer End -->
+
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+  <!-- JavaScript Libraries -->
+  <div class="javascript" th:replace="fragments/common :: javascript"></div>
+
+</body>
+
+</html>
