@@ -95,9 +95,13 @@
         </tr>
         <tr>
           <th scope="row">Notice Day</th>
-          <td th:text="${#temporals.createDate(board.noticeSdt,'yyyyMMdd')}">2022-09-06</td>
+          <td th:text="${board.noticeSdt} !=null ? ${#temporals.createDate(board.noticeSdt,'yyyyMMdd')} : 'null'">
+            2022-09-06
+          </td>
           <th scope="row">State End Day</th>
-          <td th:text="${#temporals.createDate(board.noticeEdt,'yyyyMMdd')}">2022-09-06</td>
+          <td th:text="${board.noticeEdt} !=null ? ${#temporals.createDate(board.noticeEdt,'yyyyMMdd')} : 'null'">
+            2022-09-06
+          </td>
         </tr>
         <tr>
           <th>Special Mark</th>
@@ -113,14 +117,15 @@
         </tr>
         <tr>
           <th>Status</th>
-          <td th:text="${board.status}">보호중
+          <td th:text="${board.status}"
+            th:classappend="${board.status} == '보호중' ? 'text-primary font-12' : 'text-success font-12'">보호중
           </td>
         </tr>
         <tr>
           <th>Care Center</th>
           <td th:text="${board.orgNm}">보호소</td>
           <th>Care Tel</th>
-          <td><a th:href="${board.officeTel}">012-345-6789</a></td>
+          <td><a th:text="${board.officeTel}">012-345-6789</a></td>
         </tr>
 
         <tr>

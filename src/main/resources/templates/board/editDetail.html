@@ -63,78 +63,147 @@
           <col width="120" />
           <col width="*" />
         </colgroup>
-        <form action="" th:action="@{/editDetail}" th:object="${board}" method="POST">
-          <tr>
-            <!-- colspan="3" -->
-            <th>NoticeNo</th>
-            <td><input type="text" id="noticeNo" th:field="*{noticeNo}"></input>
-          </tr>
-          <tr>
-            <th>Color</th>
-            <td><input type="text" id="color" th:field="*{color}"></input>
-          </tr>
-          <tr>
-            <th>Gender</th>
-            <td><input type="text" id="gender" th:field="*{sex}"></input>
-            <th scope="row">Neuter(Y/N)</th>
-            <td><input type="text" id="neuterYn" th:field="*{neuterYn}"></input>
-          </tr>
-          <tr>
-            <th>Age</th>
-            <td><textarea type="text" id="age" th:field="*{age}"></textarea>
-            <th>Weight</th>
-            <td><textarea type="text" id="weight" th:field="*{weight}"></textarea>
-          </tr>
-          <tr>
-            <th scope="row">Notice Day</th>
-            <td><textarea type="text" id="noticeDay" th:field="*{noticeSdt}"></textarea>
+        <div th:object="${board}">
+          <form action="#" th:action="@{/editDetail}" method="POST">
+            <tr>
+              <!-- colspan="3" -->
+              <th for="noticeNo">NoticeNo</th>
+              <td><input type="text" id="noticeNo" th:field="*{noticeNo}"
+                  th:classappend="${#fields.hasErrors('noticeNo')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('noticeNo')}" th:errors="*{noticeNo}">
+                  Please fill in this field </div>
+              </td>
 
-            <th scope="row">End State Day</th>
-            <td><textarea type="text" id="endStateDay" th:field="*{noticeEdt}"></textarea>
-          </tr>
-          <tr>
-            <th>Special Mark</th>
-            <td><textarea type="text" id="specialMark" th:field="*{specialMark}"></textarea>
-          </tr>
-          <tr>
-            <th>Other Notice</th>
-            <td><textarea type="text" id="otherNote" th:field="*{otherNote}"></textarea>
-          </tr>
-          <tr>
-            <th>Competent Organ </th>
-            <td><textarea type="text" id="competentOrgan" th:field="*{orgNm}"></textarea>
-          </tr>
-          <tr>
-            <th>Status</th>
-            <td><textarea type="text" id="status" th:field="*{orgNm}"></textarea>
-            </td>
-          </tr>
-          <tr>
-            <th>Care Center</th>
-            <td><textarea type="text" id="careCenter" th:field="*{orgNm}"></textarea>
-            <th>Care Tel</th>
-            <td><textarea type="text" id="officeTel" th:field="*{officeTel}"></textarea>
-          </tr>
+              <th>Image</th>
+              <td> <input type="text" id="image" th:field="*{image}"></td>
+            </tr>
+            <tr>
+              <th for="color">Color</th>
+              <td> <input type="text" id="color" th:field="*{color}"
+                  th:classappend="${#fields.hasErrors('color')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('color')}" th:errors="*{color}">
+                  Please fill in this field </div>
+              </td>
 
-          <tr>
-            <th>Care Address</th>
-            <td><textarea type="text" id="careTel" th:field="*{careAddr}"></textarea>
-            <th>Care Room</th>
-            <td><textarea type="text" id="careRoom" th:field="*{chargeNm}"></textarea>
-          </tr>
+              <th for="kind">Kind</th>
+              <td> <input type="text" id="kind" th:field="*{kind}"
+                  th:classappend="${#fields.hasErrors('kind')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('kind')}" th:errors="*{kind}">
+                  Please fill in this field </div>
+              </td>
+            </tr>
+            <tr>
+              <th for="sex">Gender</th>
+              <td><input type="text" id="gender" th:field="*{sex}"
+                  th:classappend="${#fields.hasErrors('sex')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">
+                  Please fill in this field </div>
+              </td>
+              <th for="neuterYn">Neuter(Y/N)</th>
+              <td><input type="text" id="neuterYn" th:field="*{neuterYn}"
+                  th:classappend="${#fields.hasErrors('neuterYn')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('neuterYn')}" th:errors="*{neuterYn}">
+                  Please fill in this field </div>
+              </td>
+            </tr>
+            <tr>
+              <th for="age">Age</th>
+              <td><textarea type="text" id="age" th:field="*{age}"
+                  th:classappend="${#fields.hasErrors('age')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">
+                  Please fill in this field </div>
+              </td>
+              <th for="weight">Weight</th>
+              <td><textarea type="text" id="weight" th:field="*{weight}"
+                  th:classappend="${#fields.hasErrors('weight')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">
+                  Please fill in this field </div>
+              </td>
+            </tr>
+            <tr>
+              <th for="noticeSdt">Notice Day</th>
+              <td><textarea type="text" id="noticeDay" th:field="*{noticeSdt}"
+                  th:classappend="${#fields.hasErrors('noticeSdt')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('noticeSdt')}" th:errors="*{neuterYn}">
+                  Please fill in this field </div>
+              </td>
+
+              <th for="noticeEdt">End State Day</th>
+              <td><textarea type="text" id="endStateDay" th:field="*{noticeEdt}"></textarea></td>
+            </tr>
+            <tr>
+              <th for="specialMark">Special Mark</th>
+              <td><textarea type="text" id="specialMark" th:field="*{specialMark}"
+                  th:classappend="${#fields.hasErrors('specialMark')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('specialMark')}" th:errors="*{specialMark}">
+                  Please fill in this field </div>
+              </td>
+            </tr>
+            <tr>
+              <th for="otherNote">Other Notice</th>
+              <td><textarea type="text" id="otherNote" th:field="*{otherNote}"></textarea></td>
+            </tr>
+            <tr>
+              <th for="orgNm">Competent Organ </th>
+              <td><textarea type="text" id="competentOrgan" th:field="*{orgNm}"
+                  th:classappend="${#fields.hasErrors('orgNm')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('orgNm')}" th:errors="*{orgNm}">
+                  Please fill in this field </div>
+              </td>
+            </tr>
+            <tr>
+              <th for="status">Status</th>
+              <td><textarea type="text" id="status" th:field="*{status}"
+                  th:classappend="${#fields.hasErrors('status')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">
+                  Please fill in this field </div>
+              </td>
+
+            </tr>
+            <tr>
+              <th for="careNm">Care Center</th>
+              <td><textarea type="text" id="careCenter" th:field="*{careNm}"
+                  th:classappend="${#fields.hasErrors('careNm')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('careNm')}" th:errors="*{careNm}">
+                  Please fill in this field </div>
+              </td>
+              <th for="officeTel">Care Tel</th>
+              <td><textarea type="text" id="officeTel" th:field="*{officeTel}"
+                  th:classappend="${#fields.hasErrors('officeTel')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('officeTel')}" th:errors="*{officeTel}">
+                  Please fill in this field </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th for="careAddr">Care Address</th>
+              <td><textarea type="text" id="careAddr" th:field="*{careAddr}"
+                  th:classappend="${#fields.hasErrors('careAddr')} ? 'is-invalid'"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('careAddr')}" th:errors="*{careAddr}">
+                  Please fill in this field </div>
+              </td>
+              <th for="chargeNm">Care Room</th>
+              <td><textarea type="text" id="careRoom" th:field="*{chargeNm}"></textarea></td>
+            </tr>
+            <div class="mt-5 text-right">
+              <button class="btn btn-primary profile-button" type="submit">Save</button>
+            </div>
+            <div class="mt-5 text-right">
+              <a class="btn btn-primary profile-button"
+                th:href="@{viewDetail(desertionNo = ${board.desertionNo})}">Cancel</a>
+            </div>
+          </form>
+        </div>
       </table>
-      <div class="mt-5 text-left">
-        <a class="btn btn-primary profile-button" type="submit" th:href="@{/editDetail}">Save</a>
-      </div>
-      </form>
 
 
       <div class="mt-5 text-center">
         <a class="btn btn-primary profile-button" type="button"
-          th:href="@{/edit(desertionNo = ${board.desertionNo -1})}">Next Animal</a>
+          th:href="@{/viewDetail(desertionNo = ${board.desertionNo -1})}">Next Animal</a>
       </div>
-
     </div>
+  </div>
+  </div>
   </div>
   </div>
 

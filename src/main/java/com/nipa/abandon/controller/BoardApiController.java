@@ -21,20 +21,20 @@
 //
 //    // Aggregate root
 //    // tag::get-aggregate-root[]
-//    @GetMapping("/boards")
+//    @GetMapping("/boardList")
 //    List<Board> all() {
 //        return repository.findAll();
 //    }
 //    // end::get-aggregate-root[]
 //
-//    @PostMapping("/boards")
+//    @PostMapping("/boardList")
 //    Board newBoard(@RequestBody Board newBoard) {
 //        return repository.save(newBoard);
 //    }
-//
-//    // Single item
-//
-//    @GetMapping("/boards/{id}")
+
+    // Single item
+
+//    @GetMapping("/boardList/{id}")
 //    Board one(@PathVariable Long id) {
 //
 //        return repository.findById(id)

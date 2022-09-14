@@ -101,6 +101,10 @@
           </div>
         </div>
       </div>
+
+      <div class="mt-5 text-center">
+        <a class="btn btn-primary profile-button" type="button" th:href="@{/editDetail}">Add New</a>
+      </div>
     </div>
     <!-- end row -->
 
@@ -114,7 +118,7 @@
                   <tr class="colColor">
                     <th scope="col">NoticeNo</th>
                     <th scope="col">Image</th>
-                    <th scope="col">Happen Day</th>
+                    <th scope="col">Notice Day</th>
                     <th scope="col">Status</th>
                     <th scope="col">Kind</th>
                     <th scope="col">Care Address</th>
@@ -136,12 +140,14 @@
                     <!-- ${#calendars.format(cal, 'dd/MMM/yyyy HH:mm')} -->
                     <!-- th:text="${#temporals.format(board.happenDay,'yyyy-MM-dd')}" -->
 
-                    <td th:text="${#temporals.createDate(board.happenDay,'yyyyMMdd')}">02/5/2019</td>
-
+                    <td
+                      th:text="${board.noticeSdt} !=null ? ${#temporals.createDate(board.noticeSdt,'yyyyMMdd')} : 'null'">
+                      02/5/2019</td>
                     <!-- class="text-success font-12" -->
                     <td class="status" th:text="${board.status}"
                       th:classappend="${board.status} == '보호중' ? 'text-primary font-12' : 'text-success font-12'"> ok
                     </td>
+
                     <td class="kind" th:text="${board.kind}">dog</td>
 
                     <td class="care_address" th:text="${board.careAddr}">Korea</td>
@@ -150,7 +156,6 @@
 
                     <td class="special_mark" th:text="${board.specialMark}">beautiful</td>
                   </tr>
-
                 </tbody>
               </table>
             </div>

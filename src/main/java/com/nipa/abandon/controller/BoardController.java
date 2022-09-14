@@ -12,15 +12,17 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelExtensionsKt;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.WebContext;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class BoardController {
 
     @Autowired
@@ -52,7 +54,7 @@ public class BoardController {
     public String boardViewDetail(Model model, @RequestParam(required = false) Long desertionNo){
 
             Board board = boardRepository.findById(desertionNo).orElse(null);
-            model.addAttribute("board", board);
+
 
 //        neuter
         String neuterYN=boardRepository.getNeuterYN(board.getDesertionNo());
@@ -78,22 +80,36 @@ public class BoardController {
         }
         model.addAttribute("neuterYN", neuterYN);
         model.addAttribute("gender", gender);
+        model.addAttribute("board", board);
         return "board/viewDetail";
     }
 
     @GetMapping("/editDetail")
     public String get(Model model,@RequestParam(required = false) Long desertionNo){
+
         if(desertionNo == null){
             model.addAttribute("board", new Board());
-        }else{
+
+        }else {
             Board board = boardRepository.findById(desertionNo).orElse(null);
-            model.addAttribute("board" , board);
+            model.addAttribute("board", board);
         }
-        return "board/viewDetail";
+
+        return "board/editDetail";
     }
+
+
     @PostMapping("/editDetail")
-    public String editDetail(@ModelAttribute Board board){
+    public String editDetail(@Valid Board board, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+//            return "board/viewDetail?desertionNo" + desertionNo;
+            return "board/editDetail";
+        }
+
         boardRepository.save(board);
-        return "redirect:/board/viewDetail";//direct to viewDetail to reload
+        Long desertionNo = board.getDesertionNo();
+//        return "redirect:/editDetail?desertionNo=" + desertionNo;
+        return "redirect:/viewDetail?desertionNo=" + desertionNo;
     }
 }
