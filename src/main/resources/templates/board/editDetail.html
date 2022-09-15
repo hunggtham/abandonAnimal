@@ -66,6 +66,14 @@
         <div th:object="${board}">
           <form action="#" th:action="@{/editDetail}" method="POST">
             <tr>
+              <th for="desertionNo">DesertionNo</th>
+              <td><input type="text" id="desertionNo" th:field="*{desertionNo}"
+                  th:classappend="${#fields.hasErrors('desertionNo')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('desertionNo')}" th:errors="*{desertionNo}">
+                  Please fill in this field </div>
+              </td>
+            </tr>
+            <tr>
               <!-- colspan="3" -->
               <th for="noticeNo">NoticeNo</th>
               <td><input type="text" id="noticeNo" th:field="*{noticeNo}"
