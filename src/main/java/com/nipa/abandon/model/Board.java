@@ -1,21 +1,14 @@
 package com.nipa.abandon.model;
 
 
-import com.sun.istack.NotNull;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 
-// This tells Hibernate to make a table out of this class
-//(name = "animal")
-
+//POJO Plain Object Java Object
 @Entity(name = "animal")
 @Data
 public class Board {
@@ -113,12 +106,198 @@ public class Board {
     @Column(name = "other_note")
     private String otherNote;
 
-    public Board() {
-
+    public long getDesertionNo() {
+        return desertionNo;
     }
 
-//    @DateTimeFormat(pattern="YYYY-MM-dd")
-//    public Date getHappenDay() {
-//        return happenDay;
-//    }
+    public void setDesertionNo(long desertionNo) {
+        this.desertionNo = desertionNo;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getHappenDay() {
+        return happenDay;
+    }
+
+    public void setHappenDay(String happenDay) {
+        this.happenDay = happenDay;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getSpecialMark() {
+        return specialMark;
+    }
+
+    public void setSpecialMark(String specialMark) {
+        this.specialMark = specialMark;
+    }
+
+    public String getCareAddr() {
+        return careAddr;
+    }
+
+    public void setCareAddr(String careAddr) {
+        this.careAddr = careAddr;
+    }
+
+    public String getOfficeTel() {
+        return officeTel;
+    }
+
+    public void setOfficeTel(String officeTel) {
+        this.officeTel = officeTel;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getNoticeNo() {
+        return noticeNo;
+    }
+
+    public void setNoticeNo(String noticeNo) {
+        this.noticeNo = noticeNo;
+    }
+
+    public String getNoticeSdt() {
+        return noticeSdt;
+    }
+
+    public void setNoticeSdt(String noticeSdt) {
+        this.noticeSdt = noticeSdt;
+    }
+
+    public String getNoticeEdt() {
+        return noticeEdt;
+    }
+
+    public void setNoticeEdt(String noticeEdt) {
+        this.noticeEdt = noticeEdt;
+    }
+
+    public String getPopfile() {
+        return popfile;
+    }
+
+    public void setPopfile(String popfile) {
+        this.popfile = popfile;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getNeuterYn() {
+        return neuterYn;
+    }
+
+    public void setNeuterYn(String neuterYn) {
+        this.neuterYn = neuterYn;
+    }
+
+    public String getCareNm() {
+        return careNm;
+    }
+
+    public void setCareNm(String careNm) {
+        this.careNm = careNm;
+    }
+
+    public String getOrgNm() {
+        return orgNm;
+    }
+
+    public void setOrgNm(String orgNm) {
+        this.orgNm = orgNm;
+    }
+
+    public String getChargeNm() {
+        return chargeNm;
+    }
+
+    public void setChargeNm(String chargeNm) {
+        this.chargeNm = chargeNm;
+    }
+
+    public String getOtherNote() {
+        return otherNote;
+    }
+
+    public void setOtherNote(String otherNote) {
+        this.otherNote = otherNote;
+    }
+
+    //constructor
+    public Board() {}
+
+    public Board(String image, String happenDay, String status, String kind, String specialMark, String careAddr, String officeTel, String color, String age, String weight, String noticeNo, String noticeSdt, String noticeEdt, String popfile, String sex, String neuterYn, String careNm, String orgNm, String chargeNm, String otherNote) {
+        this.image = image;
+        this.happenDay = happenDay;
+        this.status = status;
+        this.kind = kind;
+        this.specialMark = specialMark;
+        this.careAddr = careAddr;
+        this.officeTel = officeTel;
+        this.color = color;
+        this.age = age;
+        this.weight = weight;
+        this.noticeNo = noticeNo;
+        this.noticeSdt = noticeSdt;
+        this.noticeEdt = noticeEdt;
+        this.popfile = popfile;
+        this.sex = sex;
+        this.neuterYn = neuterYn;
+        this.careNm = careNm;
+        this.orgNm = orgNm;
+        this.chargeNm = chargeNm;
+        this.otherNote = otherNote;
+    }
+
 }

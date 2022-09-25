@@ -5,24 +5,21 @@ import com.nipa.abandon.model.Board;
 import com.nipa.abandon.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelExtensionsKt;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.context.WebContext;
+
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+
 
 @Controller
-@RequestMapping
 public class BoardController {
 
     @Autowired

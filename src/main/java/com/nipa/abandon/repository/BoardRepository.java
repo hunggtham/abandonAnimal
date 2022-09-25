@@ -37,5 +37,5 @@ public interface BoardRepository extends CrudRepository<Board, Long> {
 
     @Query(value = "select sex_cd from animal a where a.desertion_no = ?1" , nativeQuery = true)
     String getSex(long desertionNo);
-
+    
 }
