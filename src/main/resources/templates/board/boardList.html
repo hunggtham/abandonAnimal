@@ -106,111 +106,116 @@
         <a class="btn btn-primary profile-button" type="button" th:href="@{/editDetail}">Add New</a>
       </div>
     </div>
-    <!-- end row -->
+    <div class="mt-5 text-center">
+      <a class="btn btn-primary profile-button" type="button" th:href="@{https://bom.so/4kbmbh}">
+        viewVisualization</a>
+    </div>
+  </div>
+  <!-- end row -->
 
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="table-responsive project-list">
-              <table class="table project-table table-centered table-nowrap">
-                <thead>
-                  <tr class="colColor">
-                    <th scope="col">NoticeNo</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Notice Day</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Kind</th>
-                    <th scope="col">Care Address</th>
-                    <th scope="col">Care Tel</th>
-                    <th scope="col">Special Mark</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- row1 -->
-                  <!-- th:text="${board.name}" -->
-                  <tr th:each="board : ${boards}">
-                    <td><a th:text="${board.noticeNo}" th:href="@{viewDetail(desertionNo = ${board.desertionNo})}"></a>
-                    </td>
-                    <!-- <img th:attr="src=@{$board.image}" /> -->
-                    <td> <a th:href="${board.image}"><img id="display-img" th:src="${board.image}"></a></td>
-                    <!-- th:text="${#calendars.format(today,'dd MMMM yyyy')}" -->
-                    <!-- <td th:text="${#temporals.createDate(user.crtDtm, 'yyyyMMdd')}"></td> -->
-                    <!-- th:text="${board.happenDay} != null ? ${#temporals.createDate(board.happenDay,'yyyymmdd')} : 'happen Day is null' " -->
-                    <!-- ${#calendars.format(cal, 'dd/MMM/yyyy HH:mm')} -->
-                    <!-- th:text="${#temporals.format(board.happenDay,'yyyy-MM-dd')}" -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive project-list">
+            <table class="table project-table table-centered table-nowrap">
+              <thead>
+                <tr class="colColor">
+                  <th scope="col">NoticeNo</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Notice Day</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Care Address</th>
+                  <th scope="col">Care Tel</th>
+                  <th scope="col">Special Mark</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row1 -->
+                <!-- th:text="${board.name}" -->
+                <tr th:each="board : ${boards}">
+                  <td><a th:text="${board.noticeNo}" th:href="@{viewDetail(desertionNo = ${board.desertionNo})}"></a>
+                  </td>
+                  <!-- <img th:attr="src=@{$board.image}" /> -->
+                  <td> <a th:href="${board.image}"><img id="display-img" th:src="${board.image}"></a></td>
+                  <!-- th:text="${#calendars.format(today,'dd MMMM yyyy')}" -->
+                  <!-- <td th:text="${#temporals.createDate(user.crtDtm, 'yyyyMMdd')}"></td> -->
+                  <!-- th:text="${board.happenDay} != null ? ${#temporals.createDate(board.happenDay,'yyyymmdd')} : 'happen Day is null' " -->
+                  <!-- ${#calendars.format(cal, 'dd/MMM/yyyy HH:mm')} -->
+                  <!-- th:text="${#temporals.format(board.happenDay,'yyyy-MM-dd')}" -->
 
-                    <td
-                      th:text="${board.noticeSdt} !=null ? ${#temporals.createDate(board.noticeSdt,'yyyyMMdd')} : 'null'">
-                      02/5/2019</td>
-                    <!-- class="text-success font-12" -->
-                    <td class="status" th:text="${board.status}"
-                      th:classappend="${board.status} == '보호중' ? 'text-primary font-12' : 'text-success font-12'"> ok
-                    </td>
+                  <td
+                    th:text="${board.noticeSdt} !=null ? ${#temporals.createDate(board.noticeSdt,'yyyyMMdd')} : 'null'">
+                    02/5/2019</td>
+                  <!-- class="text-success font-12" -->
+                  <td class="status" th:text="${board.status}"
+                    th:classappend="${board.status} == '보호중' ? 'text-primary font-12' : 'text-success font-12'"> ok
+                  </td>
 
-                    <td class="kind" th:text="${board.kind}">dog</td>
+                  <td class="kind" th:text="${board.kind}">dog</td>
 
-                    <td class="care_address" th:text="${board.careAddr}">Korea</td>
+                  <td class="care_address" th:text="${board.careAddr}">Korea</td>
 
-                    <td class="officetel" th:text="${board.officeTel}">031-000-000</td>
+                  <td class="officetel" th:text="${board.officeTel}">031-000-000</td>
 
-                    <td class="special_mark" th:text="${board.specialMark}">beautiful</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- end project-list -->
+                  <td class="special_mark" th:text="${board.specialMark}">beautiful</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- end project-list -->
 
-            <!-- page navigation  -->
-            <div class="pt-3">
-              <ul class="pagination justify-content-end mb-0">
-                <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
-                  <a class="page-link" href="#" th:href="@{/boardList(page= ${boards.pageable.pageNumber - 1})}"
-                    tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <!-- page start -->
-                <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
-                  <a class="page-link" href="#" th:href="@{/boardList(page= 1)}" tabindex="-1"
-                    aria-disabled="true">First</a>
-                </li>
-                <!-- start page -->
-                <li class="page-item" th:classappend="${i== boards.pageable.pageNumber + 1} ? 'disabled'"
-                  th:each="i : ${#numbers.sequence(startPage,endPage)}">
-                  <a class="page-link" href="#" th:href="@{/boardList(page=${i -1}) }" th:text="${i}">1</a>
-                </li>
-                <!-- page end -->
-                <li class="page-item"
-                  th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled'">
-                  <a class="page-link" href="#" th:href="@{/boardList(page= ${boards.totalPages -1})}">Last</a>
-                </li>
-                <!-- next page -->
-                <li class="page-item"
-                  th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled'">
-                  <a class="page-link" th:href="@{/boardList(page= ${boards.pageable.pageNumber + 1})}">Next</a>
-                </li>
-                <!-- go to page -->
+          <!-- page navigation  -->
+          <div class="pt-3">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" href="#" th:href="@{/boardList(page= ${boards.pageable.pageNumber - 1})}"
+                  tabindex="-1" aria-disabled="true">Previous</a>
+              </li>
+              <!-- page start -->
+              <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" href="#" th:href="@{/boardList(page= 1)}" tabindex="-1"
+                  aria-disabled="true">First</a>
+              </li>
+              <!-- start page -->
+              <li class="page-item" th:classappend="${i== boards.pageable.pageNumber + 1} ? 'disabled'"
+                th:each="i : ${#numbers.sequence(startPage,endPage)}">
+                <a class="page-link" href="#" th:href="@{/boardList(page=${i -1}) }" th:text="${i}">1</a>
+              </li>
+              <!-- page end -->
+              <li class="page-item"
+                th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" href="#" th:href="@{/boardList(page= ${boards.totalPages -1})}">Last</a>
+              </li>
+              <!-- next page -->
+              <li class="page-item"
+                th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" th:href="@{/boardList(page= ${boards.pageable.pageNumber + 1})}">Next</a>
+              </li>
+              <!-- go to page -->
 
-                <div>
-                  <div class="form-group mb-0">
-                    <div class="input-group mb-0">
-                      <input type="text" id="go-to" class="form-control" placeholder="Go to..."
-                        aria-describedby="project-search-addon" />
-                      <div class="input-group-append">
-                        <button type="button" id="project-search-addon"><i
-                            class="bi bi-chevron-double-right"></i></button>
-                      </div>
+              <div>
+                <div class="form-group mb-0">
+                  <div class="input-group mb-0">
+                    <input type="text" id="go-to" class="form-control" placeholder="Go to..."
+                      aria-describedby="project-search-addon" />
+                    <div class="input-group-append">
+                      <button type="button" id="project-search-addon"><i
+                          class="bi bi-chevron-double-right"></i></button>
                     </div>
                   </div>
                 </div>
+              </div>
 
-              </ul>
-            </div>
-            <!-- end page navigation -->
+            </ul>
           </div>
+          <!-- end page navigation -->
         </div>
       </div>
     </div>
-    <!-- end row -->
+  </div>
+  <!-- end row -->
   </div>
 
 
